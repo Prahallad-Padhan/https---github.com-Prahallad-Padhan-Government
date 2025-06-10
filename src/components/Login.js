@@ -32,7 +32,7 @@ const Login = () => {
             if (isOrg) {
                 navigate('/organization/dashboard');
             } else if (isVendor) {
-                navigate('/organizationDashboard');
+                navigate('/organization/dashboard');
             } else {
                 setError("Address not registered as vendor or organization.");
             }
