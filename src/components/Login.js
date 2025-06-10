@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
 
-const CONTRACT_ADDRESS = "0xAa24543bD278Cb3e692a1ab819acf59bB0a4a658"; // replace with actual address
+const CONTRACT_ADDRESS = "0xA20c9148eE21F5f4E39d0d4CFaD6A24993A17bb8"; // replace with actual address
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
@@ -26,13 +26,13 @@ const Login = () => {
 
             const contract = new Contract(CONTRACT_ADDRESS, contractABI, signer);
 
-            // const isVendor = await contract.isVendor(userAddress);
-            const isOrg = await contract.isRegistered(userAddress);
+            const isVendor = await contract.isVendor(userAddress);
+            const isOrg = await contract.isOrganization(userAddress);
 
             if (isOrg) {
-                navigate('/vendorDashboard');
-                //} else if (isOrg) {
-                // navigate('/organizationDashboard');
+                navigate('/organization/dashboard');
+            } else if (isVendor) {
+                navigate('/organizationDashboard');
             } else {
                 setError("Address not registered as vendor or organization.");
             }

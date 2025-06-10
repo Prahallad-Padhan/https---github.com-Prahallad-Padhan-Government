@@ -620,7 +620,26 @@
 				"type": "address"
 			}
 		],
-		"name": "isRegistered",
+		"name": "isOrganization",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "vendorAddr",
+				"type": "address"
+			}
+		],
+		"name": "isVendor",
 		"outputs": [
 			{
 				"internalType": "bool",

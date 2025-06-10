@@ -5,6 +5,8 @@ import OrganizationRegistrationForm from './components/OrganizationRegistrationF
 import VendorRegistrationForm from './components/VendorRegistrationForm';
 import Register from './components/Register';
 import Login from './components/Login';
+import VendorDashboard from './components/VendorDashboard';
+import OrganizationDashboard from './components/OrganizationDashboard';
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register/organization" element={<OrganizationRegistrationForm />} />
         <Route path="/register/vendor" element={<VendorRegistrationForm />} />
+        <Route path="/vendor/dashboard" element={<VendorDashboard />} />
+        <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
       </Routes>
     </Router>
   );
