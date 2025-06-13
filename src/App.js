@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import VendorDashboard from './components/VendorDashboard';
 import OrganizationDashboard from './components/OrganizationDashboard';
+import PostProject from './components/PostProject';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register/vendor" element={<VendorRegistrationForm />} />
         <Route path="/vendor/dashboard" element={<VendorDashboard />} />
         <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
+        <Route path="/post-project" element={<PostProject />} />
       </Routes>
     </Router>
   );

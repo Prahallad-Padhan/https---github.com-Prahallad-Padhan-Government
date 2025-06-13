@@ -7,7 +7,7 @@ const OrganizationDashboard = () => {
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>Welcome</h1>
-            <button style={styles.button} onClick={() => navigate('/organization/dashboard')}>
+            <button style={styles.button} onClick={() => navigate('/post-project')}>
                 Post Project
             </button>
         </div>
