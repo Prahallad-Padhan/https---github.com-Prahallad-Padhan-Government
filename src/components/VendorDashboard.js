@@ -7,7 +7,7 @@ const VendorDashboard = () => {
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>Welcome</h1>
-            <button style={styles.button} onClick={() => navigate('/view-projects')}>
+            <button style={styles.button} onClick={() => navigate('/view-project')}>
                 View Projects
             </button>
         </div>

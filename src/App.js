@@ -8,6 +8,7 @@ import Login from './components/Login';
 import VendorDashboard from './components/VendorDashboard';
 import OrganizationDashboard from './components/OrganizationDashboard';
 import PostProject from './components/PostProject';
+import ViewProject from './components/ViewProject';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/vendor/dashboard" element={<VendorDashboard />} />
         <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
         <Route path="/post-project" element={<PostProject />} />
+        <Route path="/view-project" element={<ViewProject />} />
       </Routes>
     </Router>
   );

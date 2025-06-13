@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
-const CONTRACT_ADDRESS = "0xc108e0E13cFD27B3e3d5f7361b073645f8F7E742";
+const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4";
 
 const VendorRegistrationForm = () => {
   const [vendorName, setVendorName] = useState('');

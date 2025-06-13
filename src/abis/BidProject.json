@@ -308,8 +308,13 @@
 	},
 	{
 		"inputs": [],
-		"name": "getAllProjects",
+		"name": "getAllProjectsWithOrg",
 		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "orgNames",
+				"type": "string[]"
+			},
 			{
 				"components": [
 					{
@@ -359,7 +364,7 @@
 					}
 				],
 				"internalType": "struct PostProject.Project[]",
-				"name": "",
+				"name": "allProjects",
 				"type": "tuple[]"
 			}
 		],
@@ -466,72 +471,6 @@
 				"internalType": "struct BidProject.Bid[]",
 				"name": "",
 				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_projectId",
-				"type": "uint256"
-			}
-		],
-		"name": "getProject",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "projectId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "title",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "budget",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "startDate",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "timeline",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "location",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "category",
-						"type": "string"
-					}
-				],
-				"internalType": "struct PostProject.Project",
-				"name": "",
-				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",
