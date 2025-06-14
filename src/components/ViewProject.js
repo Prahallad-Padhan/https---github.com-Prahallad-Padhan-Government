@@ -1,24 +1,43 @@
+// src/components/ViewProjects.js
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Card, CardContent, Typography, Grid } from '@mui/material';
 import { BrowserProvider, Contract } from 'ethers';
-import contractABI from '../abis/BidProject.json';
+import contractABI from '../abis/BidProject.json'; // ABI containing PostProject's ABI too
 
-const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4'; // replace if different
+const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4'; // Replace with your deployed contract address
 
-const ViewProject = () => {
+const ViewProjects = () => {
     const [projects, setProjects] = useState([]);
 
     const fetchProjects = async () => {
         try {
             if (!window.ethereum) return alert('MetaMask not installed');
+
             const provider = new BrowserProvider(window.ethereum);
             const signer = await provider.getSigner();
             const contract = new Contract(CONTRACT_ADDRESS, contractABI, signer);
 
-            const data = await contract.getAllProjects();
-            setProjects(data);
+            const [orgNames, rawProjects] = await contract.getAllProjectsWithOrg();
+
+            console.log("Fetched Projects:", rawProjects);
+            console.log("Organization Names:", orgNames);
+
+            const formatted = rawProjects.map((p, i) => ({
+                orgName: orgNames[i],
+                owner: p.owner,
+                projectId: p.projectId.toString(),
+                title: p.title,
+                budget: p.budget.toString(),
+                description: p.description,
+                startDate: p.startDate,
+                timeline: p.timeline.toString(),
+                location: p.location,
+                category: p.category
+            }));
+
+            setProjects(formatted);
         } catch (err) {
-            console.error('Error fetching projects:', err);
+            console.error("Error fetching projects:", err);
         }
     };
 
@@ -28,22 +47,22 @@ const ViewProject = () => {
 
     return (
         <Box sx={{ p: 2 }}>
-            <Typography variant="h5" gutterBottom>Available Projects</Typography>
-            <Grid container spacing={2}>
+            <Typography variant="h4" gutterBottom align="center">Available Projects</Typography>
+            <Grid container spacing={3}>
                 {projects.map((proj, index) => (
-                    <Grid item xs={12} md={6} lg={4} key={index}>
-                        <Card variant="outlined">
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card elevation={3}>
                             <CardContent>
-                                <Typography><strong>Owner:</strong> {proj.organizationName}</Typography>
-                                <Typography><strong>Project ID:</strong> {proj.projectId.toString()}</Typography>
-                                <Typography><strong>Title:</strong> {proj.title}</Typography>
-                                <Typography><strong>Budget:</strong> {proj.budget.toString()}</Typography>
+                                <Typography variant="h6">{proj.title}</Typography>
+                                <Typography><strong>Organization:</strong> {proj.orgName}</Typography>
+                                <Typography><strong>Project ID:</strong> {proj.projectId}</Typography>
+                                <Typography><strong>Budget:</strong> ₹{proj.budget}</Typography>
                                 <Typography><strong>Start Date:</strong> {proj.startDate}</Typography>
-                                <Typography><strong>Timeline:</strong> {proj.timeline.toString()} days</Typography>
+                                <Typography><strong>Timeline:</strong> {proj.timeline} days</Typography>
                                 <Typography><strong>Location:</strong> {proj.location}</Typography>
                                 <Typography><strong>Category:</strong> {proj.category}</Typography>
-                                <Box sx={{ mt: 1 }}>
-                                    <Button variant="contained" color="primary" size="small" fullWidth>
+                                <Box mt={2}>
+                                    <Button fullWidth variant="contained" color="primary">
                                         Bid Now
                                     </Button>
                                 </Box>
@@ -56,4 +75,4 @@ const ViewProject = () => {
     );
 };
 
-export default ViewProject;
+export default ViewProjects;
