@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Card, CardContent, Typography, Grid } from '@mui/material';
 import { BrowserProvider, Contract } from 'ethers';
-import contractABI from '../abis/BidProject.json'; // ABI containing PostProject's ABI too
+import { useNavigate } from 'react-router-dom'; // ✅ For navigation
+import contractABI from '../abis/BidProject.json';
 
-const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4'; // Replace with your deployed contract address
+const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4';
 
 const ViewProjects = () => {
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate(); // ✅ Hook to navigate
 
     const fetchProjects = async () => {
         try {
@@ -18,9 +20,6 @@ const ViewProjects = () => {
             const contract = new Contract(CONTRACT_ADDRESS, contractABI, signer);
 
             const [orgNames, rawProjects] = await contract.getAllProjectsWithOrg();
-
-            console.log("Fetched Projects:", rawProjects);
-            console.log("Organization Names:", orgNames);
 
             const formatted = rawProjects.map((p, i) => ({
                 orgName: orgNames[i],
@@ -45,6 +44,10 @@ const ViewProjects = () => {
         fetchProjects();
     }, []);
 
+    const handleBidNow = (projectId) => {
+        navigate(`/bidding/${projectId}`); // ✅ Navigate to bidding page with projectId
+    };
+
     return (
         <Box sx={{ p: 2 }}>
             <Typography variant="h4" gutterBottom align="center">Available Projects</Typography>
@@ -62,7 +65,12 @@ const ViewProjects = () => {
                                 <Typography><strong>Location:</strong> {proj.location}</Typography>
                                 <Typography><strong>Category:</strong> {proj.category}</Typography>
                                 <Box mt={2}>
-                                    <Button fullWidth variant="contained" color="primary">
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={() => handleBidNow(proj.projectId)} // ✅ Pass projectId
+                                    >
                                         Bid Now
                                     </Button>
                                 </Box>

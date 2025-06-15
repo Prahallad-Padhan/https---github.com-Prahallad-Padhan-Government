@@ -9,7 +9,7 @@ import VendorDashboard from './components/VendorDashboard';
 import OrganizationDashboard from './components/OrganizationDashboard';
 import PostProject from './components/PostProject';
 import ViewProject from './components/ViewProject';
-
+import Bidding from './components/Bidding'; // handles /bidding/:projectId
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/organization/dashboard" element={<OrganizationDashboard />} />
         <Route path="/post-project" element={<PostProject />} />
         <Route path="/view-project" element={<ViewProject />} />
+        <Route path="/bidding/:projectId" element={<Bidding />} /> {/* ✅ Updated route */}
       </Routes>
     </Router>
   );
