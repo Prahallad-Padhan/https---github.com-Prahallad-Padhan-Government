@@ -25,7 +25,7 @@ const Bidding = () => {
 
             const tx = await contract.placeBid(
                 Number(projectId),
-                parseEther(bidAmount.toString()),
+                Number(bidAmount),
                 proposal,
                 Number(timeNeeded)
             );
@@ -58,10 +58,10 @@ const Bidding = () => {
                 />
                 <input
                     type="number"
-                    step="0.01"
+                    step="1"
                     value={bidAmount}
                     onChange={(e) => setBidAmount(e.target.value)}
-                    placeholder="Bid Amount (ETH)"
+                    placeholder="Bid Amount (INR)"
                     required
                 />
                 <button type="submit">Submit Bid</button>
