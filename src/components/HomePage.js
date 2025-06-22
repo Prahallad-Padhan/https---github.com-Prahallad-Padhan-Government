@@ -11,16 +11,9 @@ const HomePage = () => {
             <header className="header">
                 <div className="nav-container">
                     <div className="logo">
-                        <h2>YourBrand</h2>
+                        <h2>digitalTENDER</h2>
                     </div>
                     <div className="nav-buttons">
-                        <div className="language-selector">
-                            <select className="language-dropdown">
-                                <option>🌐 English</option>
-                                <option>🌐 Hindi</option>
-                                <option>🌐 Spanish</option>
-                            </select>
-                        </div>
                         <button className="nav-btn signin-btn" onClick={() => navigate('/login')}>
                             Sign In
                         </button>
@@ -45,23 +38,41 @@ const HomePage = () => {
                     <p className="hero-subtitle">
                         Connect with vendors and organizations worldwide. Start your journey today.
                     </p>
-                    <div className="hero-signup">
-                        <p className="signup-text">
-                            Ready to get started? Enter your email to create or restart your account.
-                        </p>
-                        <div className="email-signup">
-                            <input 
-                                type="email" 
-                                placeholder="Email address" 
-                                className="email-input"
-                            />
-                            <button className="get-started-btn" onClick={() => navigate('/register')}>
-                                Get Started <span className="arrow">›</span>
-                            </button>
+                    <button className="hero-cta-btn" onClick={() => navigate('/register')}>
+                        Join Now
+                    </button>
+                </div>
+            </section>
+
+            {/* Help Section */}
+            <section className="help-section">
+                <div className="container">
+                    <h2 className="section-title">How to Use digitalTENDER</h2>
+                    <div className="help-steps-grid">
+                        <div className="help-step">
+                            <div className="step-circle">1</div>
+                            <h3>Register</h3>
+                            <p>Create your account as a Vendor or Organization in just a few clicks.</p>
+                        </div>
+                        <div className="help-step">
+                            <div className="step-circle">2</div>
+                            <h3>Post or Find Projects</h3>
+                            <p>Organizations post tenders. Vendors explore and choose relevant ones.</p>
+                        </div>
+                        <div className="help-step">
+                            <div className="step-circle">3</div>
+                            <h3>Bid & Connect</h3>
+                            <p>Vendors place bids. Organizations evaluate and select the best fit.</p>
+                        </div>
+                        <div className="help-step">
+                            <div className="step-circle">4</div>
+                            <h3>Collaborate</h3>
+                            <p>Once matched, both parties work together securely on the platform.</p>
                         </div>
                     </div>
                 </div>
             </section>
+
 
             {/* Features Section */}
             <section className="features-section">
@@ -103,19 +114,18 @@ const HomePage = () => {
             </section>
 
             {/* About Section */}
-            <section className="about-section">
+            <section className="about-section" id="about-section">
                 <div className="container">
                     <div className="about-content">
                         <div className="about-text">
                             <h2>Revolutionizing Business Connections</h2>
                             <p>
-                                Our platform bridges the gap between vendors and organizations, creating 
-                                meaningful partnerships that drive growth and success. With advanced technology 
-                                and user-centric design, we make business networking effortless and effective.
+                                Our platform bridges the gap between vendors and organizations, creating
+                                meaningful partnerships that drive growth and success.
                             </p>
                             <p>
-                                Join thousands of successful businesses who have transformed their operations 
-                                through our innovative platform. Experience the future of business collaboration.
+                                Join thousands of successful businesses who have transformed their operations
+                                through our innovative platform.
                             </p>
                             <button className="learn-more-btn" onClick={() => navigate('/register')}>
                                 Start Your Journey
@@ -123,22 +133,10 @@ const HomePage = () => {
                         </div>
                         <div className="about-visual">
                             <div className="stats-grid">
-                                <div className="stat-item">
-                                    <h3>50K+</h3>
-                                    <p>Active Users</p>
-                                </div>
-                                <div className="stat-item">
-                                    <h3>190+</h3>
-                                    <p>Countries</p>
-                                </div>
-                                <div className="stat-item">
-                                    <h3>99.9%</h3>
-                                    <p>Uptime</p>
-                                </div>
-                                <div className="stat-item">
-                                    <h3>24/7</h3>
-                                    <p>Support</p>
-                                </div>
+                                <div className="stat-item"><h3>50K+</h3><p>Active Users</p></div>
+                                <div className="stat-item"><h3>190+</h3><p>Countries</p></div>
+                                <div className="stat-item"><h3>99.9%</h3><p>Uptime</p></div>
+                                <div className="stat-item"><h3>24/7</h3><p>Support</p></div>
                             </div>
                         </div>
                     </div>
@@ -152,7 +150,7 @@ const HomePage = () => {
                         <div className="footer-section">
                             <h4>Company</h4>
                             <ul>
-                                <li><a href="#about">About Us</a></li>
+                                <li><a href="#about-section">About Us</a></li>
                                 <li><a href="#careers">Careers</a></li>
                                 <li><a href="#press">Press</a></li>
                                 <li><a href="#blog">Blog</a></li>
@@ -184,17 +182,11 @@ const HomePage = () => {
                                 <a href="#" className="social-link">💼</a>
                                 <a href="#" className="social-link">📘</a>
                             </div>
-                            <div className="language-footer">
-                                <select className="language-dropdown-footer">
-                                    <option>🌐 English</option>
-                                    <option>🌐 Hindi</option>
-                                    <option>🌐 Spanish</option>
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>&copy; 2025 YourBrand. All rights reserved.</p>
+                        <p>&copy; 2025 digitalTENDER. All rights reserved.</p>
                     </div>
                 </div>
             </footer>

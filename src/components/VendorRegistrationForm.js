@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
+import './VendorRegistrationForm.css';
+
 const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4";
 
 const VendorRegistrationForm = () => {
@@ -35,8 +37,6 @@ const VendorRegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate required fields (no vendorAddress)
     if (!vendorName || category.length === 0 || !yearsOfExp) {
       setError('Please fill all required fields');
       return;
@@ -54,11 +54,8 @@ const VendorRegistrationForm = () => {
 
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-
       const contract = new Contract(CONTRACT_ADDRESS, contractABI, signer);
 
-      // Assuming registerVendor signature:
-      // function registerVendor(string memory _vendorName, uint _yearsOfExperience, string[] memory _category, string[] memory _certifications)
       const tx = await contract.registerVendor(
         vendorName,
         parseInt(yearsOfExp),
@@ -71,7 +68,6 @@ const VendorRegistrationForm = () => {
 
       alert("Vendor registered successfully!");
 
-      // Reset form
       setVendorName('');
       setCategory([]);
       setCertifications([]);
@@ -85,70 +81,62 @@ const VendorRegistrationForm = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '40px' }}>
+    <div className="vendor-form-container">
       <h2>Register as Vendor</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <input
-            type="text"
-            placeholder="Vendor Name"
-            value={vendorName}
-            onChange={(e) => setVendorName(e.target.value)}
-          />
+      {error && <p className="error-message">{error}</p>}
+      <form className="vendor-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Vendor Name"
+          value={vendorName}
+          onChange={(e) => setVendorName(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Add Category (press Enter)"
+          onKeyPress={handleCategoryKeyPress}
+        />
+        <div className="tag-list">
+          {category.map((cat, idx) => (
+            <span className="tag" key={idx}>
+              {cat}
+              <button
+                type="button"
+                onClick={() => setCategory(category.filter((_, i) => i !== idx))}
+              >
+                ×
+              </button>
+            </span>
+          ))}
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <input
-            type="text"
-            placeholder="Add Category (press Enter to add)"
-            onKeyPress={handleCategoryKeyPress}
-          />
-          <div>
-            {category.map((cat, idx) => (
-              <span key={idx} style={{ marginRight: '5px' }}>
-                {cat}{' '}
-                <button
-                  type="button"
-                  onClick={() => setCategory(category.filter((_, i) => i !== idx))}
-                >
-                  x
-                </button>
-              </span>
-            ))}
-          </div>
+        <input
+          type="text"
+          placeholder="Add Certification (press Enter)"
+          onKeyPress={handleCertificationKeyPress}
+        />
+        <div className="tag-list">
+          {certifications.map((cert, idx) => (
+            <span className="tag" key={idx}>
+              {cert}
+              <button
+                type="button"
+                onClick={() => setCertifications(certifications.filter((_, i) => i !== idx))}
+              >
+                ×
+              </button>
+            </span>
+          ))}
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <input
-            type="text"
-            placeholder="Add Certification (press Enter to add)"
-            onKeyPress={handleCertificationKeyPress}
-          />
-          <div>
-            {certifications.map((cert, idx) => (
-              <span key={idx} style={{ marginRight: '5px' }}>
-                {cert}{' '}
-                <button
-                  type="button"
-                  onClick={() => setCertifications(certifications.filter((_, i) => i !== idx))}
-                >
-                  x
-                </button>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ marginBottom: '10px' }}>
-          <select value={yearsOfExp} onChange={(e) => setYearsOfExp(e.target.value)}>
-            <option value="">Select Experience</option>
-            <option value="0">0-2 years</option>
-            <option value="3">3-5 years</option>
-            <option value="6">6-10 years</option>
-            <option value="10">More than 10 years</option>
-          </select>
-        </div>
+        <select value={yearsOfExp} onChange={(e) => setYearsOfExp(e.target.value)}>
+          <option value="">Select Experience</option>
+          <option value="0">0-2 years</option>
+          <option value="3">3-5 years</option>
+          <option value="6">6-10 years</option>
+          <option value="10">More than 10 years</option>
+        </select>
 
         <button type="submit" disabled={loading}>
           {loading ? 'Registering...' : 'Submit Registration'}

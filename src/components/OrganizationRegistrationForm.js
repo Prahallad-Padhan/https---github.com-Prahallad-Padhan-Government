@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
+import './OrganizationRegistrationForm.css'; // CSS file for styles
 
 const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4";
 
@@ -43,25 +44,21 @@ const OrganizationRegistrationForm = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div className="org-form-container">
       <h2>Register as Organization</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '12px' }}>
-          <input
-            type="text"
-            placeholder="Organization Name"
-            value={organizationName}
-            onChange={(e) => setOrganizationName(e.target.value)}
-          />
-        </div>
-        <div style={{ marginBottom: '12px' }}>
-          <input
-            type="text"
-            placeholder="Industry"
-            value={industry}
-            onChange={(e) => setIndustry(e.target.value)}
-          />
-        </div>
+      <form className="org-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Organization Name"
+          value={organizationName}
+          onChange={(e) => setOrganizationName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Industry"
+          value={industry}
+          onChange={(e) => setIndustry(e.target.value)}
+        />
         <button type="submit" disabled={loading}>
           {loading ? "Registering..." : "Submit Registration"}
         </button>

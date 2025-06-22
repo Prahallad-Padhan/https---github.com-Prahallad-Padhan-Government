@@ -1,55 +1,35 @@
-/* Container and Layout */
+/* Container and Card */
 .container {
+    /*background: url('https://images.unsplash.com/photo-1485083269755-a7b559a4fe5e') no-repeat center center/cover; */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Registration Card */
 .registration-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     max-width: 500px;
     width: 100%;
-    animation: fadeInUp 0.6s ease-out;
+    text-align: center;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Typography */
+/* Titles */
 .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2d3748;
+    font-size: 1.8rem;
+    font-weight: 600;
     margin-bottom: 10px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #333;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    color: #718096;
-    margin-bottom: 40px;
-    line-height: 1.5;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
 }
 
 /* Button Group */
@@ -59,139 +39,48 @@
     gap: 20px;
 }
 
-/* Register Buttons */
+/* Individual Button Card */
 .register-button {
     display: flex;
     align-items: center;
-    padding: 20px 24px;
-    border: none;
-    border-radius: 16px;
+    padding: 16px 20px;
+    border: 2px solid #007bff;
+    border-radius: 12px;
+    background: white;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: inherit;
+    transition: all 0.3s ease;
     text-align: left;
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-    border: 2px solid #e2e8f0;
 }
 
 .register-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.register-button:active {
-    transform: translateY(0);
-}
-
-/* Vendor Button Specific Styles */
-.vendor-button:hover {
-    border-color: #48bb78;
-    background: linear-gradient(135deg, #48bb78, #38a169);
+    background-color: #007bff;
     color: white;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
 }
 
-.vendor-button:hover .button-icon {
-    transform: scale(1.1);
-}
-
-/* Organization Button Specific Styles */
-.organization-button:hover {
-    border-color: #4299e1;
-    background: linear-gradient(135deg, #4299e1, #3182ce);
-    color: white;
-}
-
-.organization-button:hover .button-icon {
-    transform: scale(1.1);
-}
-
-/* Button Icon */
+/* Icon Section */
 .button-icon {
-    font-size: 2.5rem;
-    margin-right: 20px;
-    transition: transform 0.3s ease;
+    font-size: 2rem;
+    margin-right: 16px;
 }
 
-/* Button Content */
+/* Content inside Button */
 .button-content {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    align-items: flex-start;
 }
 
 .button-title {
-    font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 4px;
-    color: #2d3748;
+    font-size: 1.1rem;
 }
 
 .button-description {
     font-size: 0.9rem;
-    color: #718096;
-    font-weight: 400;
+    color: #555;
 }
 
-.register-button:hover .button-title,
 .register-button:hover .button-description {
     color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .registration-card {
-        padding: 30px 20px;
-        margin: 10px;
-    }
-    
-    .title {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
-    
-    .register-button {
-        padding: 18px 20px;
-    }
-    
-    .button-icon {
-        font-size: 2rem;
-        margin-right: 15px;
-    }
-    
-    .button-title {
-        font-size: 1.1rem;
-    }
-    
-    .button-description {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .title {
-        font-size: 1.8rem;
-    }
-    
-    .registration-card {
-        padding: 25px 15px;
-    }
-    
-    .register-button {
-        padding: 16px 18px;
-    }
-    
-    .button-icon {
-        font-size: 1.8rem;
-        margin-right: 12px;
-    }
 }

@@ -1,15 +1,26 @@
-// src/components/ViewProjects.js
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardContent, Typography, Grid } from '@mui/material';
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    Typography,
+    Grid,
+    CircularProgress,
+    Divider,
+    Chip,
+    Paper
+} from '@mui/material';
 import { BrowserProvider, Contract } from 'ethers';
-import { useNavigate } from 'react-router-dom'; // ✅ For navigation
+import { useNavigate } from 'react-router-dom';
 import contractABI from '../abis/BidProject.json';
 
 const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4';
 
 const ViewProjects = () => {
     const [projects, setProjects] = useState([]);
-    const navigate = useNavigate(); // ✅ Hook to navigate
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const fetchProjects = async () => {
         try {
@@ -26,9 +37,9 @@ const ViewProjects = () => {
                 owner: p.owner,
                 projectId: p.projectId.toString(),
                 title: p.title,
-                budget: p.budget.toString(),
+                budget: parseInt(p.budget).toLocaleString(),
                 description: p.description,
-                startDate: p.startDate,
+                startDate: new Date(p.startDate).toLocaleDateString(),
                 timeline: p.timeline.toString(),
                 location: p.location,
                 category: p.category
@@ -37,6 +48,8 @@ const ViewProjects = () => {
             setProjects(formatted);
         } catch (err) {
             console.error("Error fetching projects:", err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -45,40 +58,68 @@ const ViewProjects = () => {
     }, []);
 
     const handleBidNow = (projectId) => {
-        navigate(`/bidding/${projectId}`); // ✅ Navigate to bidding page with projectId
+        navigate(`/bidding/${projectId}`);
     };
 
     return (
-        <Box sx={{ p: 2 }}>
-            <Typography variant="h4" gutterBottom align="center">Available Projects</Typography>
-            <Grid container spacing={3}>
-                {projects.map((proj, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <Card elevation={3}>
-                            <CardContent>
-                                <Typography variant="h6">{proj.title}</Typography>
-                                <Typography><strong>Organization:</strong> {proj.orgName}</Typography>
-                                <Typography><strong>Project ID:</strong> {proj.projectId}</Typography>
-                                <Typography><strong>Budget:</strong> ₹{proj.budget}</Typography>
-                                <Typography><strong>Start Date:</strong> {proj.startDate}</Typography>
-                                <Typography><strong>Timeline:</strong> {proj.timeline} days</Typography>
-                                <Typography><strong>Location:</strong> {proj.location}</Typography>
-                                <Typography><strong>Category:</strong> {proj.category}</Typography>
-                                <Box mt={2}>
-                                    <Button
-                                        fullWidth
-                                        variant="contained"
+        <Box sx={{ px: { xs: 2, sm: 4 }, py: 4 }}>
+            <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 600 }}>
+                Available Projects
+            </Typography>
+            <br />
+
+            {loading ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+                    <CircularProgress />
+                </Box>
+            ) : projects.length === 0 ? (
+                <Typography align="center" sx={{ mt: 6 }} color="text.secondary">
+                    No projects available right now. Please check back later.
+                </Typography>
+            ) : (
+                <Grid container spacing={3}>
+                    {projects.map((proj, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Card elevation={4} sx={{ borderRadius: 3, p: 2, background: '#fefefe' }}>
+                                <CardContent>
+                                    <Typography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
+                                        {proj.title}
+                                    </Typography>
+
+                                    <Chip
+                                        label={`Organization: ${proj.orgName}`}
+                                        variant="outlined"
                                         color="primary"
-                                        onClick={() => handleBidNow(proj.projectId)} // ✅ Pass projectId
-                                    >
-                                        Bid Now
-                                    </Button>
-                                </Box>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
+                                        size="small"
+                                        sx={{ mb: 1 }}
+                                    />
+
+                                    <Divider sx={{ my: 1 }} />
+
+                                    <Typography variant="body2"><strong>Project ID:</strong> {proj.projectId}</Typography>
+                                    <Typography variant="body2"><strong>Budget:</strong> ₹{proj.budget}</Typography>
+                                    <Typography variant="body2"><strong>Start Date:</strong> {proj.startDate}</Typography>
+                                    <Typography variant="body2"><strong>Timeline:</strong> {proj.timeline} days</Typography>
+                                    <Typography variant="body2"><strong>Location:</strong> {proj.location}</Typography>
+                                    <Typography variant="body2"><strong>Category:</strong> {proj.category}</Typography>
+
+                                    <Box mt={2}>
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            color="success"
+                                            onClick={() => handleBidNow(proj.projectId)}
+                                            sx={{ textTransform: 'none', fontWeight: 500 }}
+                                        >
+                                            Bid Now
+                                        </Button>
+                                    </Box>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+            )}
         </Box>
     );
 };

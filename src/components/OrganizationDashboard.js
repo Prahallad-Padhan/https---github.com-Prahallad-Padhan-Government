@@ -1,43 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './OrganizationDashboard.css';
 
 const OrganizationDashboard = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={styles.container}>
-            <h1 style={styles.title}>Welcome</h1>
-            <button style={styles.button} onClick={() => navigate('/post-project')}>
-                Post Project
-            </button>
+        <div className="org-dashboard">
+            <header className="dashboard-header">
+                <h2 className="dashboard-logo">digitalTENDER</h2>
+                <button className="logout-btn" onClick={() => navigate('/')}>Logout</button>
+            </header>
+
+            <main className="dashboard-content">
+                <h1 className="dashboard-title">Welcome, Organization</h1>
+                <div className="dashboard-actions">
+                    <button onClick={() => navigate('/post-project')}>📤 Post New Project</button>
+                    <button onClick={() => navigate('/projects')}>📁 View My Projects</button>
+                    <button onClick={() => navigate('/bids')}>📨 Review Vendor Bids</button>
+                </div>
+            </main>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        backgroundColor: '#f0f4f8',
-    },
-    title: {
-        marginBottom: '20px',
-        fontSize: '2rem',
-        color: '#333',
-    },
-    button: {
-        margin: '10px',
-        padding: '12px 24px',
-        fontSize: '16px',
-        cursor: 'pointer',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '6px',
-    },
 };
 
 export default OrganizationDashboard;
