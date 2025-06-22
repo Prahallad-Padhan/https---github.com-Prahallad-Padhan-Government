@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
+import './Login.css';
 
-const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4"; // replace with actual address
+const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
@@ -45,12 +46,15 @@ const Login = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h2>Login</h2>
-            <button onClick={handleLogin} disabled={loading}>
-                {loading ? 'Logging in...' : 'Connect Wallet'}
-            </button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+        <div className="login-container">
+            <div className="login-card">
+                <h2 className="login-title">Welcome Back</h2>
+                <p className="login-subtitle">Connect your wallet to continue</p>
+                <button className="login-button" onClick={handleLogin} disabled={loading}>
+                    {loading ? 'Connecting...' : 'Connect Wallet'}
+                </button>
+                {error && <p className="login-error">{error}</p>}
+            </div>
         </div>
     );
 };

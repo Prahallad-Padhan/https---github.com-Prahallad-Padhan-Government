@@ -1,43 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './VendorDashboard.css';
 
 const VendorDashboard = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={styles.container}>
-            <h1 style={styles.title}>Welcome</h1>
-            <button style={styles.button} onClick={() => navigate('/view-project')}>
-                View Projects
-            </button>
+        <div className="vendor-dashboard">
+            <header className="dashboard-header">
+                <h2 className="dashboard-logo">digitalTENDER</h2>
+                <button className="logout-btn" onClick={() => navigate('/')}>Logout</button>
+            </header>
+
+            <main className="dashboard-content">
+                <h1 className="dashboard-title">Welcome, Vendor</h1>
+                <div className="dashboard-actions">
+                    <button onClick={() => navigate('/view-project')}>📂 View Open Projects</button>
+                    <button onClick={() => navigate('/my-bids')}>📑 My Bids</button>
+                    <button onClick={() => navigate('/vendor-profile')}>👤 View Profile</button>
+                </div>
+            </main>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        backgroundColor: '#f0f4f8',
-    },
-    title: {
-        marginBottom: '20px',
-        fontSize: '2rem',
-        color: '#333',
-    },
-    button: {
-        margin: '10px',
-        padding: '12px 24px',
-        fontSize: '16px',
-        cursor: 'pointer',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '6px',
-    },
 };
 
 export default VendorDashboard;

@@ -1,0 +1,54 @@
+.org-form-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.org-form-container h2 {
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.org-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.org-form input {
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.org-form input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.org-form button {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.org-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.org-form button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
