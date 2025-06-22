@@ -15,7 +15,7 @@ import { BrowserProvider, Contract } from 'ethers';
 import { useNavigate } from 'react-router-dom';
 import contractABI from '../abis/BidProject.json';
 
-const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4';
+import { BID_PROJECT_CONTRACT_ADDRESS } from '../constants';
 
 const ViewProjects = () => {
     const [projects, setProjects] = useState([]);

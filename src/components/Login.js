@@ -4,7 +4,7 @@ import { BrowserProvider, Contract } from 'ethers';
 import contractABI from '../abis/BidProject.json';
 import './Login.css';
 
-const CONTRACT_ADDRESS = "0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4";
+import { CONTRACT_ADDRESS } from '../constants';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);

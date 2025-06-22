@@ -1,1 +1,1 @@
-export const REGISTER_ORG_ADDRESS = "0xAa24543bD278Cb3e692a1ab819acf59bB0a4a658"; // replace with your actual address
+export const CONTRACT_ADDRESS = '0xB176697Ba9e8c152b5ee80F3aA8d80D980d031A4';
