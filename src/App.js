@@ -9,7 +9,7 @@ import VendorDashboard from './components/VendorDashboard';
 import OrganizationDashboard from './components/OrganizationDashboard';
 import PostProject from './components/PostProject';
 import ViewProject from './components/ViewProject';
-import Bidding from './components/Bidding'; // handles /bidding/:projectId
+import Bidding from './components/Bidding'; // handle/bidding/:projectId
 
 function App() {
   return (
